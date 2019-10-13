@@ -1,0 +1,30 @@
+﻿@model ProductType;
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h2 class="text-info">Edit Products</h2>
+<form asp-action="Details" method="post">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label asp-for="ProductTypeName"></label>
+            </div>
+            <div class="col-md-5">
+                <input asp-for="ProductTypeName"  readonly="readonly" class="form-control"/>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-success">Back To List</a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial.cshtml");}
+}

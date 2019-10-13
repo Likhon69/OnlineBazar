@@ -38,5 +38,82 @@ namespace OnlineBazar.Areas.Admin.Controllers
             }
             return View(productType);
         }
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ProType = _db.ProductTypes.Find(id);
+            if (ProType == null)
+            {
+                return NotFound();
+            }
+            return View(ProType);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ProductType Products)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ProductTypes.Update(Products);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ProType = _db.ProductTypes.Find(id);
+            if (ProType == null)
+            {
+                return NotFound();
+            }
+            return View(ProType);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details(ProductType Products)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ProType = _db.ProductTypes.Find(id);
+            if (ProType == null)
+            {
+                return NotFound();
+            }
+            return View(ProType);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(ProductType Products)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.ProductTypes.Remove(Products);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
     }
 }

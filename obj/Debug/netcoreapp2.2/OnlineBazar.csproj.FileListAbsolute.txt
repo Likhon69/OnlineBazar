@@ -37,3 +37,10 @@ F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\View
 F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\OnlineBazar.csprojAssemblyReference.cache
 F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\ProductType\Create.g.cshtml.cs
 F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ButttonforPartial.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\ProductType\Edit.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\ProductType\Details.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\ProductType\Delete.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\ProductTag\Index.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\ProductTag\Create.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\ProductTag\Edit.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ButtonForTagPartial.g.cshtml.cs
