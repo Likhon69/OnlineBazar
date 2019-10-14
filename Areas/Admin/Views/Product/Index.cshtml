@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Products>;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br /><br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Products List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp;Add New Product</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-bordered table-striped">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(c => c.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.ProductColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.IsAvailabe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.ProductType.ProductTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(c => c.SpecialTag.SpecialTagName)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.ProductName</td>
+            <td>@item.Price</td>
+            <td>@item.ProductColor</td>
+            <td>@item.IsAvailabe</td>
+            <td>@item.ProductType.ProductTypeName</td>
+            <td>@item.SpecialTag.SpecialTagName</td>
+            <td><partial name="_ButtonForProductPartial" model="@item.Id" /></td>
+        </tr>
+        }
+    </table>
+</div>
+
+

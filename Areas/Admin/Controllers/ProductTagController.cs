@@ -45,7 +45,7 @@ namespace OnlineBazar.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var ProType = _db.ProductTypes.Find(id);
+            var ProType = _db.SpecialTags.Find(id);
             if (ProType == null)
             {
                 return NotFound();
@@ -59,6 +59,57 @@ namespace OnlineBazar.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 _db.SpecialTags.Update(ProTag);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ProType = _db.SpecialTags.Find(id);
+            if (ProType == null)
+            {
+                return NotFound();
+            }
+            return View(ProType);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details(SpecialTag ProTag)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var ProType = _db.SpecialTags.Find(id);
+            if (ProType == null)
+            {
+                return NotFound();
+            }
+            return View(ProType);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(SpecialTag ProTag)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.SpecialTags.Remove(ProTag);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
