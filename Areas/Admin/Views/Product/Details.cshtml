@@ -1,11 +1,11 @@
 ﻿@model Products;
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Details";
 }
 
 <br />
-<h2 class="text-info">Edit Products</h2>
-<form asp-action="Edit" method="post" enctype="multipart/form-data">
+<h2 class="text-info">Details Products</h2>
+<form asp-action="Details" method="post" enctype="multipart/form-data">
     <div class="p-4 rounded border row">
         <div asp-validation-summary="ModelOnly" class="text-danger">
 
@@ -16,7 +16,8 @@
                     <label asp-for="ProductType"></label>
                 </div>
                 <div class="col-md-5">
-                    <select asp-for="ProductTypeId" asp-items="@ViewBag.ProSelect" class="form-control"></select>
+                    @*<select asp-for="ProductTypeId" asp-items="@ViewBag.ProSelect"  class="form-control"></select>*@
+                    <input asp-for="ProductTypeId" readonly="readonly" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -24,7 +25,8 @@
                     <label asp-for="SpecialTag"></label>
                 </div>
                 <div class="col-md-5">
-                    <select asp-for="SpecialTagId" asp-items="@ViewBag.ProTagSelect" class="form-control"></select>
+                    @*<select asp-for="SpecialTagId" asp-items="@ViewBag.ProTagSelect" class="form-control"></select>*@
+                    <input asp-for="SpecialTagId" readonly="readonly" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -32,23 +34,23 @@
                     <label asp-for="ProductName"></label>
                 </div>
                 <div class="col-md-5">
-                    <input asp-for="ProductName" class="form-control" />
+                    <input asp-for="ProductName" readonly="readonly" class="form-control" />
                 </div>
             </div>
-            <div class="form-group row">
+            @*<div class="form-group row">
                 <div class="col-md-2">
                     <label asp-for="Image"></label>
                 </div>
                 <div class="col-md-5">
                     <input asp-for="Image" class="form-control" type="file" />
                 </div>
-            </div>
+            </div>*@
             <div class="form-group row">
                 <div class="col-md-2">
                     <label asp-for="Price"></label>
                 </div>
                 <div class="col-md-5">
-                    <input asp-for="Price" class="form-control" />
+                    <input asp-for="Price" readonly="readonly" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -56,7 +58,7 @@
                     <label asp-for="ProductColor"></label>
                 </div>
                 <div class="col-md-5">
-                    <input asp-for="ProductColor" class="form-control" />
+                    <input asp-for="ProductColor" readonly="readonly" class="form-control" />
                 </div>
             </div>
             <div class="form-group row">
@@ -64,25 +66,22 @@
                     <label asp-for="IsAvailabe"></label>
                 </div>
                 <div class="col-md-5">
-                    <input asp-for="IsAvailabe" type="checkbox" />
+                    <input asp-for="IsAvailabe" readonly="readonly" type="checkbox" />
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Update" class="btn btn-success" />
+                <a  asp-action="Edit" asp-route-id="@Model.Id"  class="btn btn-success" >Edit</a>
                 <a asp-action="Index" class="btn btn-info">Back To List</a>
             </div>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-3">
-            <img src="~/@Model.Image" width="100%" style="border-radius:5px; border:1px solid #efefef" />
+            <img src="~/@Model.Image"  />
         </div>
 
-        
+
     </div>
 </form>
 @section Scripts{
     @{ await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial.cshtml");}
 }
-
-
-

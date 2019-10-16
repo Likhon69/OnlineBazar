@@ -50,3 +50,5 @@ F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\OnlineBazar.csprojAsse
 F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Product\Create.g.cshtml.cs
 F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Product\Edit.g.cshtml.cs
 F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ButtonForProductPartial.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Product\Delete.g.cshtml.cs
+F:\DotNet\OnlineBazar\OnlineBazar\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Product\Details.g.cshtml.cs

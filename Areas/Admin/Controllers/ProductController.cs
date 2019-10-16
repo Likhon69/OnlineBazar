@@ -56,8 +56,109 @@ namespace OnlineBazar.Areas.Admin.Controllers
         }
         //Edit
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int? id)
         {
+
+            ViewData["ProSelect"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
+            ViewData["ProTagSelect"] = new SelectList(_db.SpecialTags.ToList(), "Id", "SpecialTagName");
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var products = _db.Products.Include(c => c.ProductType).Include(c => c.SpecialTag).FirstOrDefault(c => c.Id == id);
+            if (products == null)
+            {
+                return NotFound();
+            }
+            return View(products);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Products products,IFormFile image)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    var name = Path.Combine(_hoe.WebRootPath + "/images", Path.GetFileName(image.FileName));
+                    await image.CopyToAsync(new FileStream(name, FileMode.Create));
+                    products.Image = "images/" + image.FileName;
+                }
+                _db.Products.Update(products);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        //Delete
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+
+            ViewData["ProSelect"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
+            ViewData["ProTagSelect"] = new SelectList(_db.SpecialTags.ToList(), "Id", "SpecialTagName");
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var products = _db.Products.Include(c => c.ProductType).Include(c => c.SpecialTag).FirstOrDefault(c => c.Id == id);
+            if (products == null)
+            {
+                return NotFound();
+            }
+            return View(products);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(Products products, IFormFile image)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    var name = Path.Combine(_hoe.WebRootPath + "/images", Path.GetFileName(image.FileName));
+                    await image.CopyToAsync(new FileStream(name, FileMode.Create));
+                    products.Image = "images/" + image.FileName;
+                }
+                _db.Products.Remove(products);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+        //Details
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+
+            ViewData["ProSelect"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
+            ViewData["ProTagSelect"] = new SelectList(_db.SpecialTags.ToList(), "Id", "SpecialTagName");
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var products = _db.Products.Include(c => c.ProductType).Include(c => c.SpecialTag).FirstOrDefault(c => c.Id == id);
+            if (products == null)
+            {
+                return NotFound();
+            }
+            return View(products);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details(Products products, IFormFile image)
+        {
+            if (ModelState.IsValid)
+            {
+                if (image != null)
+                {
+                    var name = Path.Combine(_hoe.WebRootPath + "/images", Path.GetFileName(image.FileName));
+                     image.CopyToAsync(new FileStream(name, FileMode.Create));
+                    products.Image = "images/" + image.FileName;
+                }
+                
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
     }
