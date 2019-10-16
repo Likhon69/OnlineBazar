@@ -28,6 +28,19 @@ namespace OnlineBazar.Areas.Admin.Controllers
             var data = _db.Products.Include(c => c.ProductType).Include(f => f.SpecialTag).ToList();
             return View(data);
         }
+        [HttpPost]
+        public IActionResult Index(decimal? Lowamount,decimal? Largeamount)
+        {
+            var data = _db.Products.Include(c => c.ProductType).Include(c => c.SpecialTag)
+                .Where(c => c.Price >= Lowamount && c.Price <= Largeamount).ToList();
+            if (Lowamount == null || Largeamount==null)
+            {
+                data = _db.Products.Include(c => c.ProductType).Include(c => c.SpecialTag)
+                .ToList();
+                
+            }
+            return View(data);
+        }
         [HttpGet]
         public IActionResult Create()
         {
@@ -42,6 +55,14 @@ namespace OnlineBazar.Areas.Admin.Controllers
            
             if (ModelState.IsValid)
             {
+                var SrchProduct = _db.Products.FirstOrDefault(c => c.ProductName == products.ProductName);
+                if (SrchProduct != null)
+                {
+                    ViewBag.message = "This product is alreaady Exists";
+                    ViewData["ProSelect"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductTypeName");
+                    ViewData["ProTagSelect"] = new SelectList(_db.SpecialTags.ToList(), "Id", "SpecialTagName");
+                    return View(products);
+                }
                 if (image != null)
                 {
                     var name = Path.Combine(_hoe.WebRootPath + "/images", Path.GetFileName(image.FileName));
@@ -52,7 +73,7 @@ namespace OnlineBazar.Areas.Admin.Controllers
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(products);
         }
         //Edit
         [HttpGet]
